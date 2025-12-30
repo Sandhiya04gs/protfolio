@@ -68,9 +68,15 @@ const typed = new Typed('.multiple-text', {
 const githubUsername = "Sandhiya04gs"; // change this
 
 fetch(`https://api.github.com/users/${githubUsername}/repos`)
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("GitHub API Error");
+    }
+    return response.json();
+  })
   .then(repos => {
     const projectContainer = document.getElementById("github-projects");
+    if (!projectContainer) return;
 
     repos
       .filter(repo => !repo.fork) // hide forked repos
