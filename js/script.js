@@ -77,10 +77,13 @@ fetch(`https://api.github.com/users/${githubUsername}/repos`)
   .then(repos => {
     const projectContainer = document.getElementById("github-projects");
     if (!projectContainer) return;
-
     repos
-      .filter(repo => !repo.fork) // hide forked repos
-      .slice(0, 6) // show only 6 projects
+      .filter(repo => !repo.fork && repo.name.toLowerCase() !== "portfolio")
+      .slice(0, 6)
+      .forEach(repo => {
+        // ... your existing code
+      });
+
       .forEach(repo => {
         const projectBox = document.createElement("div");
         projectBox.classList.add("portfolio-box");
