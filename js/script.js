@@ -1,5 +1,5 @@
-const menuIcon = document.querySelector("#menu-icon");
-const navbar = document.querySelector(".navbar");
+//const menuIcon = document.querySelector("#menu-icon");
+//const navbar = document.querySelector(".navbar");
 // Only close menu on mobile screens
 if (window.innerWidth < 768) { // 768px is common mobile breakpoint
   menuIcon.classList.remove("bx-x");
@@ -116,4 +116,4 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch(error => console.error("GitHub Fetch Error:", error));
-    });
+});
