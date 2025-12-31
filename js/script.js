@@ -100,7 +100,7 @@ window.addEventListener("DOMContentLoaded", () => {
       if (!projectContainer) return;
 
       repos
-        .filter(repo => !repo.fork  && repo.name.toLowerCase() !== "portfolio") // hide forked repos
+        .filter(repo => !repo.fork  && repo.name.toLowerCase() !== "protfolio") // hide forked repos
         .slice(0, 6) // show only 6 projects
         .forEach(repo => {
           const projectBox = document.createElement("div");
