@@ -86,34 +86,22 @@ const typed = new Typed('.multiple-text', {
 // ================= GitHub Projects Auto Fetch =================
 
 window.addEventListener("DOMContentLoaded", () => {
-  const githubUsername = "Sandhiya04gs";
-  
-  fetch(`https://api.github.com/users/Sandhiya04gs/repos`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("GitHub API Error");
-      }
-      return response.json();
-    })
-    .then(repos => {
+  fetch("projects.json")
+    .then(res => res.json())
+    .then(projects => {
       const projectContainer = document.getElementById("github-projects");
-      if (!projectContainer) return;
+      projects.forEach(repo => {
+        const projectBox = document.createElement("div");
+        projectBox.classList.add("portfolio-box");
 
-      repos
-        .filter(repo => !repo.fork  && repo.name.toLowerCase() !== "protfolio") // hide forked repos
-        .slice(0, 6) // show only 6 projects
-        .forEach(repo => {
-          const projectBox = document.createElement("div");
-          projectBox.classList.add("portfolio-box");
-
-          projectBox.innerHTML = `
-            <h4>${repo.name}</h4>
-            <p>${repo.description || "No description available"}</p>
-            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-           `;
-
-          projectContainer.appendChild(projectBox);
-        });
-      })
-      .catch(error => console.error("GitHub Fetch Error:", error));
+        projectBox.innerHTML = `
+          <h4>${repo.name}</h4>
+          <p>${repo.description || "No description available"}</p>
+          <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+        `;
+        projectContainer.appendChild(projectBox);
+      });
+    })
+    .catch(err => console.error(err));
 });
+
