@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Portfolio Website",
+    "description": "My personal portfolio website",
+    "html_url": "https://github.com/Sandhiya04gs/protfilo"
+  },
+  {
+    "name": "Restaurant Website",
+    "description": "Single page restaurant website using HTML and CSS",
+    "html_url": "https://github.com/Sandhiya04gs/restaurant"
+  },
+  {
+    "name": "Expense Tracker",
+    "description": "Track daily expenses using JavaScript",
+    "html_url": "https://github.com/Sandhiya04gs/expense-tracker"
+  }
+]
