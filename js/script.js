@@ -80,7 +80,9 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(repos => {
       // Filter out forks if you want
-      const projects = repos.filter(repo => !repo.fork);
+      const projects = repos.filter(
+        repo => !repo.fork && repo.name.toLowerCase() !== "protfolio"
+      );
 
       projects.forEach(repo => {
         const projectBox = document.createElement("div");
