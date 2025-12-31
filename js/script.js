@@ -1,49 +1,71 @@
-// toggle icon navbar
+const menuIcon = document.querySelector("#menu-icon");
+const navbar = document.querySelector(".navbar");
+// Only close menu on mobile screens
+if (window.innerWidth < 768) { // 768px is common mobile breakpoint
+  menuIcon.classList.remove("bx-x");
+  navbar.classList.remove("active");
+}
 
-let menuIcon = document.querySelector("#menu-icon");
-let navbar = document.querySelector(".navbar");
-menuIcon.onclick = () => {
-  menuIcon.classList.toggle("bx-x");
-  navbar.classList.toggle("active");
-};
 
-// Scroll Sections Active Links
+// ===== Sections and nav links =====
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".navbar a"); // ✅ correct selector
+const header = document.querySelector("header");
 
-let sections = document.querySelectorAll("section");
-let navLinks = document.querySelectorAll("header nav a");
+// ===== Function to highlight nav links based on scroll =====
+function highlightNav() {
+  const scrollY = window.scrollY;
 
-window.onscroll = () => {
-  sections.forEach((sec) => {
-    let top = window.scrollY;
-    let offset = sec.offsetTop - 150;
-    let height = sec.offsetHeight;
-    let id = sec.getAttribute("id");
+  let current = "";
+  sections.forEach((section, index) => {
+    const sectionTop = section.offsetTop - 100; // adjust for navbar
+    const sectionHeight = section.offsetHeight;
 
-    if (top >= offset && top < offset + height) {
-      navLinks.forEach((links) => {
-        links.classList.remove("active");
-        document
-          .querySelector("header nav a[href*=" + id + "]")
-          .classList.add("active");
-      });
+    // Highlight current section
+    if (scrollY >= sectionTop && (scrollY < sectionTop + sectionHeight || index === sections.length - 1)) {
+      current = section.getAttribute("id");
     }
   });
 
-  // Sticky navbar
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
 
-  let header = document.querySelector("header");
+// ===== Click event for nav links =====
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    // Remove active from all links
+    navLinks.forEach(l => l.classList.remove("active"));
+    // Add active to clicked link
+    link.classList.add("active");
+
+    // Close mobile menu if open
+    menuIcon.classList.remove("bx-x");
+    navbar.classList.remove("active");
+  });
+});
+
+// ===== Scroll event for sticky navbar & active link =====
+window.addEventListener("scroll", () => {
+  // Sticky navbar
   header.classList.toggle("sticky", window.scrollY > 100);
 
-  //    remove toggle icon and navbar when click navbar link
+  // Highlight nav links
+  highlightNav();
+});
 
-  menuIcon.classList.remove("bx-x");
-  navbar.classList.remove("active");
-};
+// ===== Highlight nav on page load =====
+window.addEventListener("load", () => {
+  highlightNav();
+});
 
-// scroll reveal
-
+// ===== Scroll Reveal =====
 ScrollReveal({
-//   reset: true,
+  // reset: true,
   distance: "80px",
   duration: 2000,
   delay: 200,
@@ -53,49 +75,45 @@ ScrollReveal().reveal(".home-img, .services-container, .portfolio-box, .contact 
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
-// typed js
-
+// ===== Typed JS =====
 const typed = new Typed('.multiple-text', {
-    strings: ['Frontend Developer', 'Web Developer'],
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 1000,
-    loop: true
-    });
-
+  strings: ['Frontend Developer', 'Web Developer'],
+  typeSpeed: 100,
+  backSpeed: 100,
+  backDelay: 1000,
+  loop: true
+});
 // ================= GitHub Projects Auto Fetch =================
 
-const githubUsername = "Sandhiya04gs"; // change this
+window.addEventListener("DOMContentLoaded", () => {
+  const githubUsername = "Sandhiya04gs";
+  
+  fetch(`https://api.github.com/users/Sandhiya04gs/repos`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("GitHub API Error");
+      }
+      return response.json();
+    })
+    .then(repos => {
+      const projectContainer = document.getElementById("github-projects");
+      if (!projectContainer) return;
 
-fetch(`https://api.github.com/users/${githubUsername}/repos`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("GitHub API Error");
-    }
-    return response.json();
-  })
-  .then(repos => {
-    const projectContainer = document.getElementById("github-projects");
-    if (!projectContainer) return;
-    repos
-      .filter(repo => !repo.fork && repo.name.toLowerCase() !== "portfolio")
-      .slice(0, 6)
-      .forEach(repo => {
-        // ... your existing code
-      });
+      repos
+        .filter(repo => !repo.fork  && repo.name.toLowerCase() !== "portfolio") // hide forked repos
+        .slice(0, 6) // show only 6 projects
+        .forEach(repo => {
+          const projectBox = document.createElement("div");
+          projectBox.classList.add("portfolio-box");
 
-      .forEach(repo => {
-        const projectBox = document.createElement("div");
-        projectBox.classList.add("portfolio-box");
+          projectBox.innerHTML = `
+            <h4>${repo.name}</h4>
+            <p>${repo.description || "No description available"}</p>
+            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+           `;
 
-        projectBox.innerHTML = `
-          <h4>${repo.name}</h4>
-          <p>${repo.description || "No description available"}</p>
-          <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-        `;
-
-        projectContainer.appendChild(projectBox);
-      });
-  })
-  .catch(error => console.error("GitHub Fetch Error:", error));
-
+          projectContainer.appendChild(projectBox);
+        });
+      })
+      .catch(error => console.error("GitHub Fetch Error:", error));
+    });

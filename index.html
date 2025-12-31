@@ -12,8 +12,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins&family=Questrial&display=swap"
       rel="stylesheet"
-/>
+      />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+  
     <!-- boxicons -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -23,63 +25,97 @@
   <body>
     <!-- header -->
     <header class="header">
-      <a href="#" class="logo">Portfolio</a>
-
-      <i class="bx bx-menu" id="menu-icon"></i>
-
+      <h2 class="logo"><span>SANDHIYA S</span></h2>
+      
       <nav class="navbar">
-        <a href="#home" class="active">Home</a>
+        <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#portfolio">portfolio</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
+
 
     <!-- Home Section -->
 
     <section class="home" id="home">
       <div class="home-content">
-        <h3>Hello, It's Me</h3>
-        <h1>Sandhiya S</h1>
-        <h3>And I'm a <span class="multiple-text">Aspiring Frontend Developer</span></h3>
-        <p>I am an MCA student and an aspiring Frontend Developer with hands-on experience in HTML, CSS, JavaScript, and Python. I enjoy designing and developing responsive, user-friendly web applications that deliver a smooth and engaging user experience. I am passionate about learning new technologies, enhancing my coding skills, and building practical projects that help me grow as a developer.
-        </p>
-        <div class="social-media">
-          <a href="https://www.linkedin.com/in/sandhiya-s-8931b0293"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/sandhiya"><i class="bx bxl-github" ></i></a>
-          <a href="https://www.instagram.com/sandhiya_s28/?__pwa=1"><i class="bx bxl-instagram"></i></a>
-        </div>
-        <a href="assets/Sandhiya_Resume.pdf" class="btn">Download Resume</a>
-      </div>
 
-      <div class="home-img">
-        <img src="images/profile.png" alt="" />
+        <div class="home-img">
+          <img src="images/profile.png" alt="Sandhiya" class="center-img">
+        </div>
+
+        <h1>Sandhiya S</h1>
+        <h5>Frontend Developer | Python Developer</h5>
+
+        <div class="social-media">
+          <a href="https://www.linkedin.com/in/sandhiya-s-8931b0293">
+            <i class="bx bxl-linkedin"></i>
+          </a>
+          <a href="https://github.com/">
+            <i class="bx bxl-github" ></i>
+          </a>
+        </div>
+        <a href="#portfolio" class="btn view-work-btn">View My Work</a>
       </div>
     </section>
 
     <!-- about -->
     <section class="about" id="about">
-      <div class="about-img">
-        <img src="images/about.png" alt="" />
-      </div>
-
       <div class="about-content">
-        <h2 class="heading">About <span>Me</span></h2>
-        <h3><span class="multiple-text">Frontend Developer</span></h3>
+        <h2 class="heading"> <span> About Me</span></h2>
+        <br>
+        <h3><span> Frontend Developer</span></h3>
+        <br>
 
-        <p>
-          I am an MCA student with a strong interest in web development and a passion for creating modern, responsive, and user-friendly websites. I have hands-on experience in HTML, CSS, JavaScript, and Python, along with a basic understanding of Java, SQL, and DBMS. I enjoy turning ideas into functional web applications by writing clean, structured code and focusing on usability. I am continuously learning new technologies and motivated to take on challenges that contribute to my growth as a web developer.
+        <p>I am an MCA student and passionate Frontend Developer with hands-on experience in HTML, CSS, JavaScript, and Python, and a foundational understanding of Java, SQL, and DBMS. I specialize in creating modern, responsive, and user-friendly web applications with clean, maintainable code.
+          <br>
+          <br> 
+          I enjoy transforming ideas into functional and visually appealing solutions while continuously expanding my technical skills. Motivated to take on challenging projects, I aim to contribute to innovative web applications and grow as a skilled developer in dynamic, real-world environments.
         </p>
         <br>
-        <a href="#" class="btn">Read More</a>
+        <br>
+        <a href="assets/Sandhiya_Resume.pdf" class="btn">View Resume</a>
+      </div>
+    </section>
+    
+    
+    <section id="skills">
+      <h2 class="heading"> <span> Tech Stack</span></h2>
+      
+      <div class="skills-container">
+        <div class="skill">
+          <h3>Languages & Frameworks</h3>
+            <ul class="skill-list">
+              <p><i class="bx bxl-python"></i> Python</p>
+              <p><i class="bx bxl-java"></i> Java (Basic)</p>
+              <p><i class="bx bx-code-alt"></i> Flask</p>
+            </ul>
+          </div>
+          <div class="skill">
+            <h3>Web Technologies</h3>
+              
+                <p><i class="fa-brands fa-html5"></i> HTML</p>
+                <p><i class="fa-brands fa-css3-alt"></i> CSS</p>
+                <p><i class="fa-brands fa-js"></i> JavaScript</p>
+           </div>
+        
+          <div class="skill">
+            <h3>Tolls & Databases</h3>
+            <p><i class="bx bx-data"></i> SQL & My SQL</p>
+            <p><i class="bx bx-code-alt"></i> VS Code</p>
+            <p><i class="bx bxl-github"></i> GitHub</p>
+          </div>
       </div>
     </section>
 
+
+
     <section class="portfolio" id="portfolio">
-      <h2 class="heading">Latest Projects <span></span></h2>
+      <h2 class="heading"> <span>Latest Projects</span></h2>
       <div class="portfolio-container" id="github-projects">
         <!-- Projects will load automatically from GitHub -->
-      </div>
       </div>
     </section>
       
@@ -141,9 +177,6 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
     <!-- custom js -->
-    <script src="js/script.js"></script>
-  </body>
-</html>
     <script src="js/script.js"></script>
   </body>
 </html>
